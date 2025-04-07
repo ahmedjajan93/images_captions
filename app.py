@@ -8,7 +8,7 @@ from huggingface_hub import login
 import os
 
 hf_token = os.getenv("HF_TOKEN") 
-st.write(hf_token)
+
 if hf_token:
     login(token=hf_token)  # Authenticate the token using huggingface_hub
 else:
