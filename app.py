@@ -17,8 +17,12 @@ if 'processed' not in st.session_state:
 # Load the pretrained processor and model
 @st.cache_resource
 def load_model():
-   model = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning", framework="pt")
-   return model
+    model = pipeline(
+        "image-to-text",
+        model="nlpconnect/vit-gpt2-image-captioning",
+        device=-1  
+    )
+    return model
 model = load_model()
 
 # URL input
