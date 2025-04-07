@@ -5,20 +5,6 @@ from bs4 import BeautifulSoup
 from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 import streamlit as st
 import os
-from huggingface_hub import login
-from dotenv import load_dotenv
-load_dotenv()
-
-st.set_page_config(page_title="AI Image Captioning", layout="wide")
-
-hf_token = os.getenv("HF_TOKEN")  # Get the Hugging Face token from environment variable
-
-if hf_token:
-    login(token=hf_token)  # Authenticate the token using huggingface_hub
-else:
-    st.error("❌ Hugging Face API key is missing. Please set the 'HF_TOKEN' environment variable.")
-
-
 st.title("📡 AI Image Captioning from Webpages")
 
 # Initialize session state
