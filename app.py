@@ -7,7 +7,7 @@ import streamlit as st
 import torch
 import os
 
-st.title("📡 AI Image Captioning from Webpages")
+st.title("📡 AI Image Captioning")
 
 # Initialize session state
 if 'processed' not in st.session_state:
