@@ -1,10 +1,7 @@
-﻿streamlit
-transformers
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==1.13.1+cpu
-torchvision==0.14.1+cpu
-Pillow
+torch==2.0.1
+transformers==4.30.2
+streamlit==1.25.0
+Pillow==9.5.0
 requests
 beautifulsoup4
-huggingface_hub
-dotenv
+
