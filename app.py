@@ -7,7 +7,7 @@ import streamlit as st
 from huggingface_hub import login
 import os
 
-hf_token = os.getenv("API_KEY") 
+hf_token = os.getenv("HF_TOKEN") 
 if hf_token:
     login(token=hf_token)  # Authenticate the token using huggingface_hub
 else:
