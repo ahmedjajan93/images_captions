@@ -2,16 +2,12 @@ import requests
 from PIL import Image
 from io import BytesIO, StringIO
 from bs4 import BeautifulSoup
-from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 from transformers import pipeline
 import streamlit as st
 import torch
 import os
 
 st.title("📡 AI Image Captioning from Webpages")
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
 
 # Initialize session state
 if 'processed' not in st.session_state:
@@ -21,9 +17,9 @@ if 'processed' not in st.session_state:
 # Load the pretrained processor and model
 @st.cache_resource
 def load_model():
-   image_to_text = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
-   return image_to_text
-image_to_text = load_model()
+   model = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning", framework="pt")
+   return model
+model = load_model()
 
 # URL input
 url = st.text_input("Enter the URL of the page to scrape:", placeholder="https://example.com")
@@ -59,7 +55,7 @@ def process_images(img_elements):
 
             raw_image = raw_image.convert('RGB')
 
-            captions = image_to_text(raw_image)
+            caption = model(raw_image)
 
             captions.write(f"{img_url}: {caption}\n\n")
             processed_count += 1
