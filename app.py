@@ -7,6 +7,13 @@ import streamlit as st
 import torch
 import os
 
+st.set_page_config(
+    page_title="AI Image Captioning from Webpages",
+    page_icon="📡",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 st.title("📡 AI Image Captioning")
 
 # Initialize session state
