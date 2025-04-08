@@ -20,7 +20,7 @@ def load_model():
     try:
         return pipeline("image-to-text",
                         model="nlpconnect/vit-gpt2-image-captioning",
-                        use_auth_token=os.environ["HF_TOKEN"])
+                        token=os.environ["HF_TOKEN"])
     except Exception as e:
         st.error(f"Failed to load model: {e}")
         return None
