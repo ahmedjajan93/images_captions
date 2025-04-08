@@ -13,12 +13,17 @@ st.title("📡 AI Image Captioning")
 if 'processed' not in st.session_state:
     st.session_state.processed = False
     st.session_state.captions = ""
-
+    
+# Load from local files (upload these to Streamlit Cloud)
+model_path = "./models/vit-gpt2-image-captioning"
+if not os.path.exists(model_path):
+    os.makedirs(model_path)
+    
 # Load the pretrained processor and model
-@st.cache_resource  # Cache the model
+@st.cache_resource  
 def load_model():
     try:
-        return pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
+        return pipeline("image-to-text", model="model_path")
     except Exception as e:
         st.error(f"Failed to load model: {e}")
         return None
