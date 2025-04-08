@@ -15,16 +15,17 @@ if 'processed' not in st.session_state:
     st.session_state.captions = ""
 
 # Load the pretrained processor and model
-@st.cache_resource
+@st.cache_resource  # Cache the model
 def load_model():
-    model = pipeline(
-        "image-to-text",
-        model="nlpconnect/vit-gpt2-image-captioning",
-        device=-1  
-    )
-    return model
-model = load_model()
+    try:
+        return pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
+    except Exception as e:
+        st.error(f"Failed to load model: {e}")
+        return None
 
+model = load_model()
+if model:
+    st.success("Model loaded!")
 # URL input
 url = st.text_input("Enter the URL of the page to scrape:", placeholder="https://example.com")
 
