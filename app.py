@@ -26,8 +26,6 @@ def load_model():
         return None
 
 model = load_model()
-if model:
-    st.success("Model loaded!")
 # URL input
 url = st.text_input("Enter the URL of the page to scrape:", placeholder="https://example.com")
 
